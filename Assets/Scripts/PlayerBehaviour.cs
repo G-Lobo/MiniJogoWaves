@@ -27,7 +27,8 @@ public class PlayerBehaviour : MonoBehaviour
         Vector2 pointerPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = pointerPosition - PlayerRB.position;
         transform.up = direction;
-        
+        _bulletsCooldownTimer += Time.deltaTime;
+
         Shoot();
     }
 
@@ -35,7 +36,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            _bulletsCooldownTimer += Time.deltaTime;
             if (_bulletsCooldownTimer >= bulletsCooldown)
             {
                 Instantiate(bulletPrefab, transform.position, transform.rotation);

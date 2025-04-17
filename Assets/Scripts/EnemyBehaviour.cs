@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 4.2f;
+    [SerializeField] float _moveSpeed = 4.2f;
     Transform player;
+    [SerializeField] int life;
 
     void Start()
     {
@@ -22,7 +23,17 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Vector3 direction = (player.position - transform.position).normalized;
 
-            transform.position += direction * (moveSpeed * Time.deltaTime);
+            transform.position += direction * (_moveSpeed * Time.deltaTime);
+        }
+    }
+
+    public void EnemyTakeDamage(int damage)
+    {
+        
+        life -= damage;
+        if (life <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

@@ -8,6 +8,7 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField] int bulletSpeed = 15;
     [SerializeField] float travelDistance = 6;
     private Transform _player;
+    public int damage = 1;
 
     private void Start()
     {
@@ -40,7 +41,7 @@ public class BulletBehaviour : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                Destroy(collision.gameObject);
+                collision.gameObject.GetComponent<EnemyBehaviour>().EnemyTakeDamage(damage);
             }
 
             Destroy(gameObject);

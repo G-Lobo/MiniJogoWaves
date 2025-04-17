@@ -6,22 +6,22 @@ public class SpawnerScript : MonoBehaviour
 
 
 {
-    [SerializeField] GameObject enemyPrefab;
+    [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] Transform[] spawnPoints;
+    [SerializeField] Transform _playerTransform;
     private float _spawnTimer;
-    Transform spawner;
+    private float _spawnFrequency = 0.9f;
     
     void Update()
     {
-       
-        
-        
         _spawnTimer += Time.deltaTime;
-        if (_spawnTimer >= 0.5f)
-        {
-            Vector3 randomPos = new Vector3(Random.Range(-10,10), 6, 0);
+
+        if (!(_spawnTimer >= _spawnFrequency) || !_playerTransform) return;
+        var randomPos = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
             
-            Instantiate(enemyPrefab, randomPos, Quaternion.identity);
-            _spawnTimer = 0;
-        }
+        var randomEnemy = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+            
+        Instantiate(randomEnemy, randomPos, Quaternion.identity);
+        _spawnTimer = 0;
     }
 }
