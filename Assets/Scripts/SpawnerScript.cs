@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnerScript : MonoBehaviour
+
+
 {
     [SerializeField] GameObject enemyPrefab;
     private float _spawnTimer;
