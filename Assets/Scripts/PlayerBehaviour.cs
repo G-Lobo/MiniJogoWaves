@@ -12,6 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private int speed = 5;
     [SerializeField] private float bulletsCooldown = 0.2f;
     private float _bulletsCooldownTimer;
+    public int roomsCleared = 0;
 
     public Camera mainCamera;
     
